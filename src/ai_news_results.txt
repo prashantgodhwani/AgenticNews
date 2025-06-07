@@ -1,0 +1,65 @@
+Here are the top 5 articles based on search terms:
+AI agent frameworks: AutoGen CrewAI Semantic Kernel
+
+News API Parameters:
+[{'query': 'AI agent frameworks: AutoGen CrewAI Semantic Kernel', 'topic': 'general', 'search_depth': 'basic', 'chunks_per_source': 1, 'max_results': 5, 'time_range': 'week'}]
+
+AI Agents Framework: Key Tools for Building Intelligent AI Systems
+https://undercodetesting.com/ai-agents-framework-key-tools-for-building-intelligent-ai-systems/
+* tl;dr bulleted summary
+* LangChain offers chatbot creation, memory management, and customization for interactive apps.
+* AutoGPT enables autonomous task execution based on user goals, boosting productivity.
+* SmoLan-gents focuses on creating agents that learn and perform natural language tasks for conversational AI.
+* Microsoft AutoGen automates AI-driven content creation based on inputs and context.
+* Microsoft Semantic Kernel combines AI models with semantic reasoning for deep analysis.
+* Crew AI enhances team collaboration by providing real-time assistance for tasks and brainstorming.
+* Langraph integrates language models with graph-based data for natural language queries on structured data.
+*  The article provides code examples for LangChain, AutoGPT, Microsoft Semantic Kernel, and Crew AI.
+* By 2030, AI agents are predicted to autonomously handle 40% of corporate workflows.
+
+Agentic AI Frameworks | Build Smarter AI Agents
+https://eluminoustechnologies.com/blog/agentic-ai-frameworks/
+* tl;dr bulleted summary
+* Agentic AI frameworks build autonomous AI agents that can reason, plan, and act independently.
+* Key components include LLMs (brains), perception modules, memory, planning engines, and action execution tools.
+* Popular frameworks include LangChain, AutoGen, CrewAI, AutoGPT, Semantic Kernel, and Swarm.
+* Framework selection depends on integrations, scalability, ease of use, and team expertise.
+* LangChain offers broad integrations but has a steep learning curve.
+* AutoGen excels in multi-agent systems but requires high expertise.
+* CrewAI facilitates collaborative agents with a user-friendly interface.
+* AutoGPT enables autonomous agents but can be expensive and prone to loops.
+* Semantic Kernel provides strong OpenAI integration and observability.
+* Swarm focuses on scalable, collaborative agents but behavior can be unpredictable.
+* Consider integration ecosystem, ease of use, and deployment flexibility when choosing a framework.
+
+Build Your First AI Agent - Open Source For You
+https://www.opensourceforu.com/2025/06/build-your-first-ai-agent/
+* tl;dr bulleted summary
+* This article details building a multi-agent AI service that categorizes user queries and routes them to specialized agents.
+* It uses LangGraph, LangChain, and a Hugging Face model (Mistral-7B-Instruct-v0.1) for query processing.
+*  The system includes a Super Agent for query classification, and separate agents for weather, news, and jokes.
+* The code demonstrates creating a workflow using StateGraph, defining agents as nodes, and routing queries based on category.
+*  The example processes several user queries, showcasing the system's functionality and response times.
+*  The article concludes by outlining a five-layer architecture for future, more advanced agentic AI systems, emphasizing adaptive learning, dynamic decision-making, and safety features.
+
+* tl;dr bulleted summary
+* CrewAI, AutoGen, LangChain, and Agent Zero are compared as AI agent frameworks.
+* CrewAI excels in ease of use and speed, ideal for rapid prototyping.
+* AutoGen shines in its versatility and extensibility, suitable for complex tasks.
+* LangChain offers robust features and a large community, providing comprehensive support.
+* Agent Zero, despite being less mature, demonstrates promising potential and unique capabilities.
+* The article concludes that the "best" framework depends on specific project needs and priorities.
+
+Microsoft and LangChain: Leading the Way in AI Security for Open Source ...
+https://devblogs.microsoft.com/blog/microsoft-and-langchain-leading-the-way-in-ai-security-for-open-source-on-azure
+
+* tl;dr bulleted summary
+* Microsoft and LangChain partnered to improve the security of the open-source LangChain framework.
+* LangChain's popularity and extensive third-party integrations introduce security risks like information leakage and privilege escalation.
+* Microsoft's Secure Future Initiative and AI Security Guidance helped identify vulnerabilities in LangChain's community and experimental packages.
+* The collaboration focuses on improving LangChain's security through code reviews, CI/CD improvements, and enhanced documentation.
+*  Microsoft is providing engineering resources and tools to prevent insecure code merges.
+*  A new `langchain-azure-ai` package allows seamless integration with Azure AI services.
+*  This partnership aims to make Azure the most secure environment for building AI applications with LangChain.
+* LangGraph (LangChain's AI Agent framework) is considered mostly secure as it's part of the core.
+* The collaboration sets a model for secure development of open-source AI tools.
