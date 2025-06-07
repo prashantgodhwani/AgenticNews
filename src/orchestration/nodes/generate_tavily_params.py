@@ -72,12 +72,6 @@ def generate_tavily_params(state: GraphState) -> GraphState:
         - If ≤ 3 searches left: Broader terms (150-250 chars), consider advanced search depth  
         - If this is your last search: Use comprehensive search with 30-day time range, advanced depth, and up to 400 characters with multiple key terms
 
-        **QUERY CONSTRUCTION EXAMPLES (Under 400 chars):**
-        Instead of: "new AI tools" → Use: "AI development tools 2024 LangChain AutoGen updates" (50 chars)
-        Instead of: "LLM news" → Use: "LLM fine-tuning RLHF constitutional AI 2024" (43 chars)  
-        Instead of: "AI frameworks" → Use: "AI agent frameworks ReAct RAG deployment" (41 chars)
-        Instead of: "coding assistants" → Use: "Cursor AI GitHub Copilot coding assistant updates" (49 chars)
-
         **CHARACTER COUNT STRATEGY:**
         - Target 50-200 characters for focused searches
         - Use 300-400 characters only for final comprehensive search

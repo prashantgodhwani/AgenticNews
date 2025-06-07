@@ -16,9 +16,6 @@ async def summarize_articles_parallel(state: GraphState) -> GraphState:
     {text}
       
     Be sure to follow the following format exaxtly with nothing else:
-    {title}
-    {url}
-    * tl;dr bulleted summary
     * use bullet points for each sentence
     """
 

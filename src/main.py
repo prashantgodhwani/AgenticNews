@@ -2,6 +2,8 @@ from config import load_env
 import asyncio
 from utils import logging
 from orchestration import workflow
+from datetime import datetime
+from services.telegram_notification import send_telegram_message
 from orchestration.nodes import (
     retrieve_articles_metadata,
     filter_articles_with_llm,
@@ -11,7 +13,7 @@ from orchestration.nodes import (
     summarize_articles
     )
 
-async def run_workflow(query: str, num_searches_remaining: int = 5, num_articles_tldr: int = 5):
+async def run_workflow(query: str, num_searches_remaining: int = 5, num_articles_tldr: int = 1):
     """Run the LangGraph workflow and display results."""
     initial_state = {
         "news_query": query,
@@ -24,7 +26,7 @@ async def run_workflow(query: str, num_searches_remaining: int = 5, num_articles
         "potential_articles": [],
         "potential_articles_filtered": [],
         "tldr_articles": [],
-        "formatted_results": "No articles with text found."
+        "formatted_results": []
     }
     try:
         app = workflow.build_workflow(generate_tavily_params.generate_tavily_params, 
@@ -47,11 +49,13 @@ def main():
     results = asyncio.run(run_workflow(query))
     
     # Save the results to a file
-    output_file = "ai_news_results.txt"
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_file = f"ai_news_results_{timestamp}.txt"
     with open(output_file, "w") as file:
-        file.write(results)
-    
-    print(f"Results saved to {output_file}")
+        file.write("\n".join(results))
+
+    for result in results:
+        send_telegram_message(result)
 
 if __name__ == "__main__":
     main()

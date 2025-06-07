@@ -11,4 +11,4 @@ class GraphState(TypedDict):
     potential_articles: Annotated[List[dict[str, str]], "Article with full text to consider summarizing."]
     potential_articles_filtered: Annotated[List[dict[str, str]], "Filtered articles based on LLM scoring."]
     tldr_articles: Annotated[List[dict[str, str]], "Selected article TL;DRs."]
-    formatted_results: Annotated[str, "Formatted results to display."]
+    formatted_results: Annotated[List[str], "Formatted results to display."]

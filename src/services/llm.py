@@ -14,5 +14,5 @@ else:
 
 
 # sets the OpenAI model to use and initialize model
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
+llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=1.2)
 llm_g15 = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
