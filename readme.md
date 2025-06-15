@@ -114,7 +114,7 @@ AgenticNews is an AI-powered application designed to autonomously discover, retr
 
 The system is built as a multi-agent pipeline, where each agent (node) is responsible for a specific task in the workflow. The main agents and their roles are:
 
-![AgenticNews Workflow Graph](assets/agentic_graph.png)
+![AgenticNews Workflow Graph](src/agentic_graph.png)
 
 1. **Query Generation Agent** (`generate_tavily_params`):
    - Analyzes the user/system prompt and generates targeted search queries using technical synonyms, brand names, and emerging AI terminology.
