@@ -172,4 +172,8 @@ AgenticNews includes a Telegram bot integration for automated distribution of su
 
 ---
 
+## Inspiration & Credits
+
+This project is heavily inspired by [Nir Diamant’s GenAI_Agents news_tldr_langgraph.ipynb](https://github.com/NirDiamant/GenAI_Agents/blob/main/all_agents_tutorials/news_tldr_langgraph.ipynb). Many thanks for your work!
+
 *For more details, see the source code and comments in each module.*
