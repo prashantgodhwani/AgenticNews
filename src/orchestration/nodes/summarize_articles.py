@@ -1,15 +1,11 @@
 import logging
+import asyncio
 from models.state import GraphState
 from services.llm import llm_g15
 
 async def summarize_articles_parallel(state: GraphState) -> GraphState:
     logging.info("Starting parallel summarization of articles.")
     tldr_articles = state["potential_articles"]
-
-    # prompt = """
-    # Summarize the article text in a bulleted tl;dr. Each line should start with a hyphen -
-    # {article_text}
-    # """
 
     prompt = """
     Create a * bulleted summarizing tldr for the article:
@@ -19,17 +15,18 @@ async def summarize_articles_parallel(state: GraphState) -> GraphState:
     * use bullet points for each sentence
     """
 
-    # iterate over the selected articles and collect summaries synchronously
-    for i in range(len(tldr_articles)):
-        article = tldr_articles[i]
+    async def summarize(article):
         text = article["text"]
         title = article["title"]
         url = article["url"]
-        logging.debug(f"Summarizing article {i+1}/{len(tldr_articles)}: {url}")
-        # invoke the llm synchronously
-        result = llm_g15.invoke(prompt.format(title=title, url=url, text=text))
-        tldr_articles[i]["summary"] = result.content
+        logging.debug(f"Summarizing article: {url}")
+        # Run the blocking call in a thread
+        result = await asyncio.to_thread(llm_g15.invoke, prompt.format(title=title, url=url, text=text))
+        article["summary"] = result.content
+        return article
 
+    tasks = [summarize(article) for article in tldr_articles]
+    tldr_articles = await asyncio.gather(*tasks)
     state["tldr_articles"] = tldr_articles
 
     logging.info("Article summarization completed.")

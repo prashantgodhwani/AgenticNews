@@ -13,12 +13,18 @@ from orchestration.nodes import (
     summarize_articles
     )
 
+app = workflow.build_workflow(generate_tavily_params.generate_tavily_params, 
+                                      retrieve_articles_metadata.retrieve_articles_metadata, 
+                                      filter_articles_with_llm.filter_articles_with_llm, 
+                                      select_top_urls.select_top_urls,
+                                      retrieve_articles_text.retrieve_articles_text,
+                                      summarize_articles.summarize_articles_parallel).compile()
+
 async def run_workflow(query: str, num_searches_remaining: int = 5, num_articles_tldr: int = 1):
     """Run the LangGraph workflow and display results."""
     initial_state = {
         "news_query": query,
         "num_searches_remaining": num_searches_remaining,
-        "newsapi_params": {},
         "past_searches": [],
         "articles_metadata": [],
         "scraped_urls": [],
@@ -29,12 +35,6 @@ async def run_workflow(query: str, num_searches_remaining: int = 5, num_articles
         "formatted_results": []
     }
     try:
-        app = workflow.build_workflow(generate_tavily_params.generate_tavily_params, 
-                                      retrieve_articles_metadata.retrieve_articles_metadata, 
-                                      filter_articles_with_llm.filter_articles_with_llm, 
-                                      select_top_urls.select_top_urls,
-                                      retrieve_articles_text.retrieve_articles_text,
-                                      summarize_articles.summarize_articles_parallel).compile()
         result = await app.ainvoke(initial_state, {"recursion_limit": 50})
         
         return result["formatted_results"]
@@ -49,13 +49,17 @@ def main():
     results = asyncio.run(run_workflow(query))
     
     # Save the results to a file
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = f"ai_news_results_{timestamp}.txt"
-    with open(output_file, "w") as file:
-        file.write("\n".join(results))
+    # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # output_file = f"ai_news_results_{timestamp}.txt"
+    # with open(output_file, "w") as file:
+    #     file.write("\n".join(results))
 
-    for result in results:
-        send_telegram_message(result)
+    # Send notifications asynchronously
+    async def send_all():
+        tasks = [send_telegram_message(result) for result in results]
+        await asyncio.gather(*tasks)
+
+    asyncio.run(send_all())
 
 if __name__ == "__main__":
     main()
